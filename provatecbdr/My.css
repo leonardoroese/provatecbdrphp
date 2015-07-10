@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+body{
+	background-color: Black;
+	color: White;
+}
+
+h1{
+	font-size: 22px;
+	text-align: center;
+	vertical-align: middle;
+}
+i{
+	font-size: 12px;
+}
+.questao{
+	clear: both;
+	padding: 10px;
+	width: 800px;
+	height: 120px;
+	background-color: #333;
+	border: solid 1px #EDEDED;
+	border-radius: 4px;
+	float: left;
+	margin: 10px;
+	color: LightBlue;
+	overflow: auto;	
+}
+.resposta{
+	clear: both;
+	padding: 10px;
+	width: 800px;
+	height: 120px;
+	background-color: Blue;
+	border: solid 1px #EDEDED;
+	border-radius: 4px;
+	float: left;
+	margin: 10px;
+	color: #FFF;
+	overflow: auto;	
+}
+.voltar{
+	width: 80px;
+	text-align: center;
+	height: 20px;
+	padding: 4px;
+	cursor: pointer;
+	background-color: #FFF;
+	color: Blue;
+}
+
+.voltar:hover{
+	background-color: Blue;
+	color: #FFF;;
+}

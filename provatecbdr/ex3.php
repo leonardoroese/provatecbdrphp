@@ -5,8 +5,7 @@ class MyUserClass
 
     public function getUserList()
     {
-        try 
-        {
+        try {
             $dbconn = new DatabaseConnection();
             $results = $dbconn->query('select name from user');
             sort($results);
@@ -42,7 +41,8 @@ class DatabaseConnection extends PDO
 	<br style="clear: both;">
 	<br style="clear: both;">
 
-	<div class="questao"><pre>
+	<div class="questao">
+		<pre>
 3. Refatore o código abaixo, fazendo as alterações que julgar necessário.
 
  class MyUserClass
@@ -61,14 +61,14 @@ class DatabaseConnection extends PDO
 	<strong> RESPOSTA:</strong>
 	<br style="clear: both;">
 	<br style="clear: both;">
-	<div class="resposta"><pre>
+	<div class="resposta">
+		<pre>
 class MyUserClass
 {
 
     public function getUserList()
     {
-        try 
-        {
+        try {
             $dbconn = new DatabaseConnection();
             $results = $dbconn->query('select name from user');
             sort($results);
@@ -95,10 +95,9 @@ class DatabaseConnection extends PDO
 			fonte da página PHP (topo).</i> <br> A solução para o exercício
 		proposto implica na criação da classe DatabaseConnection extendendo a
 		classe PDO que possúi os métodos indicados para execução da consulta
-		no Banco.<br>
-		Inserido tratamento de exceções.
-		 <br>Poderia também ser criado um arquivo de configuração com
-		os dados de acesso do banco para o projeto. <br>
+		no Banco.<br> Inserido tratamento de exceções. <br>Poderia também ser
+		criado um arquivo de configuração com os dados de acesso do banco para
+		o projeto. <br>
 	</p>
 </body>
 

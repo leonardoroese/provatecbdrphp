@@ -23,11 +23,32 @@
 	<strong> RESPOSTA:</strong>
 	<br style="clear: both;">
 	<br style="clear: both;">
-	<div class="resposta">
-		<pre>
-<?php
+	<div class="resposta"><pre>
 for ($i = 1; $i <= 100; $i ++) {
-    
+
+    if ($i > 1)
+        echo ",";
+    if ($i % 3 == 0)
+        echo "Fizz";
+    if ($i % 5 == 0)
+        echo "Buzz";
+    if ($i % 3 != 0 && $i % 5 != 0)
+        echo $i;
+    echo "&amp;#09;";
+    if ($i % 10 == 0)
+        echo "&lt;br&gt;";	
+	</pre>
+	</div>
+	<br style="clear: both;">
+	<p style="margin-left: 10px">
+		<i>Para acessar a identação correta em padrão PSR-2 veja o código
+			fonte da página PHP (topo).</i>
+			<br>RESULTADO:
+	</p>
+	<pre>
+	<?php
+for ($i = 1; $i <= 100; $i ++) {
+
     if ($i > 1)
         echo ",";
     if ($i % 3 == 0)
@@ -39,16 +60,13 @@ for ($i = 1; $i <= 100; $i ++) {
     echo "&#09;";
     if ($i % 10 == 0)
         echo "<br>";
+
 }
 
 ?>
+	
 	</pre>
-	</div>
-	<br style="clear: both;">
-	<p style="margin-left: 10px">
-		<i>Para acessar a identação correta em padrão PSR-2 veja o código
-			fonte da página PHP (topo).</i>
-	</p>
+
 </body>
 
 </html>
