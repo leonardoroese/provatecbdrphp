@@ -123,8 +123,8 @@ namespace Brdtest\TaskM
                 foreach($res as $k => $value){
                     $list[$cnres] = new TaskLine();
                     $list[$cnres]->id = $res[$k]["id"];
-                    $list[$cnres]->title = $res[$k]["title"];
-                    $list[$cnres]->descr = $res[$k]["descr"];
+                    $list[$cnres]->title = urldecode($res[$k]["title"]);
+                    $list[$cnres]->descr = urldecode($res[$k]["descr"]);
                     $list[$cnres]->ord = $res[$k]["ord"];
                     $list[$cnres]->dtreg = $res[$k]["dtreg"];
                     $cnres++;

@@ -41,6 +41,29 @@ function newTask(tit, descr){
 	return false;
 }
 
+function editTask(id, tit, descr){
+	$.ajax({url: "/tarefa/"+id+"/"+tit+"/"+descr, 
+		method: "PUT",
+		error: function (xhr, ajaxOptions, thrownError) {
+			alert("Problemas na requisição");
+	       },
+		success: function(result){
+			if(result != undefined && result.length > 1){
+				var restat = result.substring(0,3);
+				if(restat == "_ok"){
+					document.getElementById('msgbox').style.display='none';
+					document.getElementById('msgbox').style.innerHTML=' ';
+					getTasks();
+				}
+				alert(result.substring(4,result.length));
+			}else{
+				alert("Problemas na requisição");
+			}
+    }});
+	return false;
+}
+
+
 function delTask(id){
 	$.ajax({url: "/tarefa/"+id, 
 		method: "DELETE",
@@ -84,8 +107,10 @@ function getTasks(){
 							if(arrres.indexOf(",")>=0){
 								var mtcol = mtlin[x].split(",");
 								outdivs = outdivs + "<div class='taskitem'>";
-								outdivs = outdivs + "<strong>" + urldecode(mtcol[1]) + " <span onclick=\"if(confirm('Remover Tarefa?')){delTask('"+mtcol[0]+"')}\">|x|</span></strong>";
-								outdivs = outdivs + "<p>" + urldecode(mtcol[2]) + "</p>";
+								outdivs = outdivs + "<strong>" + urldecode(mtcol[1]) + "";
+								outdivs = outdivs + "<span style='position: relative; display: inline-block; margin-right: 2px; top: 1px; float: right;' onclick=\"eTask('"+mtcol[0]+"','"+mtcol[1]+"','"+mtcol[2]+"')\"><img src='img/write.png' height='16'</span>";
+								outdivs = outdivs + "<span style='position: relative; display: inline-block; clear: right; margin-left: 8px; top: 1px; float: right;' onclick=\"if(confirm('Remover Tarefa?')){delTask('"+mtcol[0]+"')}\"><img src='img/remove.png' height='16'</span>";
+								outdivs = outdivs + " </strong><div>" + urldecode(mtcol[2]) + "</div>";
 								outdivs = outdivs + "</div>";
 							}
 						}
@@ -107,10 +132,20 @@ function getTasks(){
 function nTask(){
 	var text;
 	text = "<div style='color: Black;'><h3>NOVA TAREFA</h3><label>Título</label>";
-	text = text + "<br> <input type='text' size='20' name='mytit' id='mytit' />";
+	text = text + "<br> <input type='text' size='20' name='mytit' id='mytit' maxlength='20'/>";
 	text = text + "<br><label>Descrição</label><br>";
-	text = text + "<textarea name='mydescr' id='mydescr' rows='4' cols='20'></textarea>";
+	text = text + "<textarea name='mydescr' id='mydescr' rows='4' cols='20' maxlength='60' ></textarea>";
 	text = text + "<br><br><div style='cursor: pointer; padding: 4px; display:inline-block; background-color: #EDEDED;' onclick=\"newTask(document.getElementById('mytit').value, document.getElementById('mydescr').value)\">Criar</div>";
+	text = text + "</div>";
+	showMsgBox(text, '400', '240');
+}
+function eTask(id,tit,descr){
+	var text;
+	text = "<div style='color: Black;'><h3>TAREFA "+id+"</h3><label>Título</label>";
+	text = text + "<br> <input type='text' size='20' name='mytit' id='mytit'  maxlength='20' value='"+urldecode(tit)+"' />";
+	text = text + "<br><label>Descrição</label><br>";
+	text = text + "<textarea name='mydescr' id='mydescr' rows='4' cols='20'  maxlength='60'>"+urldecode(descr)+"</textarea>";
+	text = text + "<br><br><div style='cursor: pointer; padding: 4px; display:inline-block; background-color: #EDEDED;' onclick=\"editTask('"+id+"',document.getElementById('mytit').value, document.getElementById('mydescr').value)\">Alterar</div>";
 	text = text + "</div>";
 	showMsgBox(text, '400', '240');
 }
