@@ -12,7 +12,7 @@ namespace Brdtest\TaskM
         // ###################################################################
         public function insTask($tit, $descr)
         {
-            $ord = 1;
+            $ord = "1";
             
             if (! $tit || strlen(trim($tit)) <= 0) {
                 $this->setMsgType("E");
@@ -24,21 +24,23 @@ namespace Brdtest\TaskM
                 $this->setMessage("Informe a descrição da tarefa");
                 return false;
             }
-            
-            $res = $this->readDB("SELECT MAX(ord) AS ord FROM Task");
+            $res = $this->readDB("SELECT MAX(ord) as o FROM Task");
             if ($res && is_array($res) && count($res) > 0) {
-                $ord = $res[0]["ord"];
-            } else {
-                $this->setMsgType("E");
-                $this->setMessage("Não foi possível inserir tarefa");
-                return false;
+                $ord = $res[0]["o"];
+                if(!$ord) 
+                {
+                    $ord = "1";
+                }else{
+                    $ord++;
+                }
+               
             }
             
-            if ($this->updateDB("INSERT INTO Task (title, descr, ord)
+            if ($this->updateDB("INSERT INTO Task (title, descr, ord, dtreg)
                  VALUES ('" . $this->prenInject($tit) . "',
-                '" . $this->prenInject($descr) . "', " . $ord . ")")) {
+                '" . $this->prenInject($descr) . "', " . $ord . ", NOW())")) {
                 $this->setMsgType("S");
-                $this->setMessage("Tarefa inserida");
+                $this->setMessage("Tarefa inserida". $c) ;
                 return true;
             } else {
                 $this->setMsgType("E");
@@ -91,7 +93,7 @@ namespace Brdtest\TaskM
                 return false;
             }
             
-            if ($this->updateDB("DELETE Task  WHERE id = " . $id)) {
+            if ($this->updateDB("DELETE FROM Task WHERE id = " . trim($id))) {
                 $this->setMsgType("S");
                 $this->setMessage("Tarefa Excluída");
                 return true;

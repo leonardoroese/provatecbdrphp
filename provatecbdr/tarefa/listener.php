@@ -7,33 +7,32 @@ $command = false;
 $params = false;
 $m = false;
 $resexec = false;
-
+$post_vars = false;
+$lis = "";
 if (isset($_SERVER['REQUEST_METHOD'])) {
     $command = $_SERVER['REQUEST_METHOD'];
 }
 
-if (trim($command) == "GET" && isset($_GET["m"]))
-    $m = $_GET["m"];
-if (trim($command) == "POST" && isset($_POST["m"]))
-    $m = $_POST["m"];
-if (trim($command) == "PUT" && isset($_PUT["m"]))
-    $m = $_PUT["m"];
-if (trim($command) == "DELETE" && isset($_DELETE["m"]))
-    $m = $_DELETE["m"];
-
-if (! $m) {
-    echo "_err: Parâmetros incorretos";
-    exit();
+if (trim($command) == "GET" )
+    $m = $m = str_replace("/tarefa", "", $_SERVER["REQUEST_URI"]);
+if (trim($command) == "POST" )
+    $m = $m = str_replace("/tarefa", "", $_SERVER["REQUEST_URI"]);
+if (trim($command) == "PUT")
+    $m = $m = str_replace("/tarefa", "", $_SERVER["REQUEST_URI"]);
+if (trim($command) == "DELETE"){
+    $m = str_replace("/tarefa", "", $_SERVER["REQUEST_URI"]);
 }
 
-if (strpos($m, "/")) {
+if (!$m) {
+    echo "_er: Parâmetros incorretos";
+    exit();
+}
+if (strpos($m, "/") >= 0) {
     $mtp = explode("/", $m);
     $c = 0;
     foreach ($mtp as $k => $value) {
         if ($c > 0) {
             $params[$c - 1] = $mtp[$k];
-        } else {
-            $command = $mtp[$k];
         }
         $c ++;
     }
@@ -42,14 +41,14 @@ if (strpos($m, "/")) {
 switch (trim($command)) {
     case "GET":
         $intsk = false;
-        if (count($params) > 1)
+        if (count($params) > 0)
         {
             $intsk = $params[0];
         }
         $resexec = $myTask->lstTask($intsk);
-        if($resexec && isarray($resexec) && count($resexec) > 0)
+        if($resexec && is_array($resexec) && count($resexec) > 0)
         {
-            echo "arr:";
+            echo "_ar:";
             $cntr = 0;
             foreach($resexec as $k => $value)
             {
@@ -70,6 +69,7 @@ switch (trim($command)) {
         {
            $resexec = $myTask->insTask($params[0], $params[1]);
         }
+        
         break;
     case "PUT":
         if (count($params) > 1)
@@ -94,6 +94,6 @@ switch (trim($command)) {
             
             }else
             {
-                echo "_err: " . $myTask->getMessage();
+                echo "_er: " . $myTask->getMessage() . $lis;
             }
 ?>
