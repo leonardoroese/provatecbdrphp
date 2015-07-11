@@ -1,7 +1,44 @@
 # provatecbdrphp
 Prova técnica aplicação PHP BDR
 
+Este projeto é um teste para aplicação para vaga de desenvolvedor PHP SR.
 
+As questões estão respondidas nos arquivos ex1.php, ex2.php, ex3.php e ex4.php e podem ser visualizadas através do acesso a aplicação na sua página principal index.html que contém os links para as respostas.
+
+A aplicação WEB foi desenvolvida totalmente IN-HOUSE, sem utilização de Frameworks, usando o formato RESTFull Application para processamento dos dados referentes a tarefas (exercício 4)
+
+Foi desenvolvido:
+
+- Classe extensível para comunicação com Banco de Dados
+- Listener para direcionamento de fluxo de requisições
+- Interface WEB HTML4+CSS+Javascript
+
+Requisitos:
+
+- JQuery 1.11 (incluído)
+
+
+-------------------------------------
+TESTE
+
+Essa aplicação foi desenvolvida e testada na seguinte configuração
+
+OS: Debian 8 (Jessie) - LINUX
+WebServer: Apache 2.4 + PHP 5.3
+Banco: MYSQL 5.5+
+
+-------------------------------------
+CONFIG
+
+Habilitar modulo MOD_REWRITE no Apache.
+Ao configurar um diretório virtual deve levar em conta:
+
+
+
+A configuração consiste em informar os dados de conexão com o banco utilizado.
+O arquivo de configuração está no diretório config/Application.config.
+
+-------------------------------------
 TABELA BD
 
 Foi criada apenas uma tabela para este exemplo.
