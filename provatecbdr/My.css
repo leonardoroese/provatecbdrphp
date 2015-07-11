@@ -108,6 +108,7 @@ i{
 }
 
 .taskitem{
+	width: 100%;
 	float: left;
 	margin: 10px;
 	width: 200px;
@@ -122,7 +123,5 @@ i{
 .taskitem strong{
 	color: LightBlue;
 	width: 100%;
-	text-align: center;
 	display: block;
-	clear: both;
 }
