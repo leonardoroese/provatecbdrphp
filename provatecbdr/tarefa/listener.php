@@ -41,7 +41,7 @@ if (strpos($m, "/") >= 0) {
 switch (trim($command)) {
     case "GET":
         $intsk = false;
-        if (count($params) > 0)
+        if (count($params) >= 0)
         {
             $intsk = $params[0];
         }
