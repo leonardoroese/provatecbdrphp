@@ -18,6 +18,8 @@ Requisitos:
 - JQuery 1.11 (incluído)
 
 
+
+
 -------------------------------------
 TESTE
 
@@ -27,16 +29,31 @@ OS: Debian 8 (Jessie) - LINUX
 WebServer: Apache 2.4 + PHP 5.3
 Banco: MYSQL 5.5+
 
+
+
+
 -------------------------------------
 CONFIG
 
 Habilitar modulo MOD_REWRITE no Apache.
+
 Ao configurar um diretório virtual deve levar em conta:
 
+<b>Permissões de diretório apache2.conf</b>
+<pre>
+    Options Indexes MultiViews FollowSymlinks
+    AllowOverride All
+    Require all granted
+</pre>
 
+Habilitar <b>RewriteEngine On</b> no VirtualHost (para apache 2.4+) 
 
 A configuração consiste em informar os dados de conexão com o banco utilizado.
-O arquivo de configuração está no diretório config/Application.config.
+
+O arquivo de configuração está no diretório <b>config/Application.config</b>.
+
+Todo conteúdo do diretório provatecbdr deve estar na Raiz da aplicação WEB.
+
 
 -------------------------------------
 TABELA BD
@@ -61,3 +78,6 @@ CREATE TABLE `bdrtest`.`Task` (
   
 ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
 </pre>
+
+O backup do banco está incluído no diretório config, arquivo bkp.sql pode ser restaurado em uma nova instalação de MYSQL.
+
