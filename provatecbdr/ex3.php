@@ -95,7 +95,9 @@ class DatabaseConnection extends PDO
 			fonte da página PHP (topo).</i> <br> A solução para o exercício
 		proposto implica na criação da classe DatabaseConnection extendendo a
 		classe PDO que possúi os métodos indicados para execução da consulta
-		no Banco.<br> Inserido tratamento de exceções. <br>Poderia também ser
+		no Banco.<br> * Inserido tratamento de exceções.<br>
+		* O contrutor com os dados de conexão
+		 <br>Poderia também ser
 		criado um arquivo de configuração com os dados de acesso do banco para
 		o projeto. <br>
 	</p>
