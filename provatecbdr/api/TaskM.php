@@ -116,7 +116,7 @@ namespace Brdtest\TaskM
             if ($id && trim($id) != "ALL") {
                 $strsql = $strsql . " WHERE id = " . $id;
             }
-            $res = $this->readDB("SELECT * FROM Task");
+            $res = $this->readDB($strsql);
             
             if ($res && is_array($res) && count($res) > 0) {
                 $cnres = 0;
