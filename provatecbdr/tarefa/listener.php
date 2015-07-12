@@ -12,17 +12,7 @@ $lis = "";
 if (isset($_SERVER['REQUEST_METHOD'])) {
     $command = $_SERVER['REQUEST_METHOD'];
 }
-
-if (trim($command) == "GET" )
-    $m = $m = str_replace("/tarefa", "", $_SERVER["REQUEST_URI"]);
-if (trim($command) == "POST" )
-    $m = $m = str_replace("/tarefa", "", $_SERVER["REQUEST_URI"]);
-if (trim($command) == "PUT")
-    $m = $m = str_replace("/tarefa", "", $_SERVER["REQUEST_URI"]);
-if (trim($command) == "DELETE"){
-    $m = str_replace("/tarefa", "", $_SERVER["REQUEST_URI"]);
-}
-
+$m = str_replace("/tarefa", "", $_SERVER["REQUEST_URI"]);
 if (!$m) {
     echo "_er: Parâmetros incorretos";
     exit();
