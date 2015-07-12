@@ -44,7 +44,8 @@ if (isset($_SESSION['loggedin']) &&	$_SESSION['loggedin'] == true){
 	<div class="resposta">
 		<pre>
 session_start();
-if (isset($_SESSION['loggedin']) || isset($_COOKIE['Loggedin'])) 
+if ((isset($_SESSION['loggedin']) && $_SESSION['loggedin']) || 
+    (isset($_COOKIE['Loggedin']) && $_COOKIE['Loggedin'])) 
 {
     header("Location: http://www.google.com");
     exit();
