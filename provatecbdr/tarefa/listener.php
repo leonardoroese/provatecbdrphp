@@ -75,13 +75,13 @@ switch (trim($command)) {
         break;
     
     default:
-        
+        echo "_er: Comando não encontrado.";
+        exit();
         break;
 }
         if($resexec)
             {
                 echo "_ok: " . $myTask->getMessage();
-            
             }else
             {
                 echo "_er: " . $myTask->getMessage() . $lis;
